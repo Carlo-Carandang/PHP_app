@@ -1,0 +1,16 @@
+DELIMITER $$
+CREATE PROCEDURE ADD_TRANSACTION(
+	IN CUSTOMERID INT
+, 	OUT TRANSACTIONID INT)
+BEGIN
+    
+    START TRANSACTION; -- Begin a transaction 
+    INSERT INTO TRANSACTIONS (CUSTOMER_ID, TRANSACTION_DATE, TOTAL_PRICE) VALUES (CUSTOMERID, CURDATE(), 0);
+    IF ROW_COUNT() > 0 THEN -- ROW_COUNT() returns the number of rows inserted
+        COMMIT; -- Finalize the transaction
+	SELECT LAST_INSERT_ID() INTO TRANSACTIONID;
+    ELSE
+        ROLLBACK; -- Revert all changes made before the transaction began
+    END IF;
+END$$
+DELIMITER ;

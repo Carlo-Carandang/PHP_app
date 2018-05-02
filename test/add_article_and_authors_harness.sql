@@ -1,0 +1,27 @@
+CALL ADD_ARTICLE('A tale of three students', '40-43', @articleid);
+
+CALL ADD_AUTHOR('Wells', 'William', 'wellsww@hotmail.com', @authorid);
+INSERT INTO article_authors (ARTICLE_ID, AUTHOR_ID) VALUES(@articleid, @authorid);
+
+CALL ADD_AUTHOR('Carandang', 'Carlo', 'carandangc@gmail.com', @authorid);
+INSERT INTO article_authors (ARTICLE_ID, AUTHOR_ID) VALUES(@articleid, @authorid);
+
+CALL ADD_AUTHOR('Aye', 'Janti', 'janti.smu@gmail.com', @authorid);
+INSERT INTO article_authors (ARTICLE_ID, AUTHOR_ID) VALUES(@articleid, @authorid);
+
+CALL ADD_CUSTOMER ('TOM', 'JONES', '902-555-5555', '1', 'STAR STREET', 'HALIFAX', 'NS', 'B3S 1B0', 'CANADA', @CUSTOMERID);
+
+CALL ADD_TRANSACTION(@CUSTOMERID, @TRANSACTIONID);
+
+CALL ADD_ITEM_TO_ORDER(@TRANSACTIONID, 5);
+CALL ADD_ITEM_TO_ORDER(@TRANSACTIONID, 6);
+CALL ADD_ITEM_TO_ORDER(@TRANSACTIONID, 7);
+
+CALL UPDATE_DISCOUNT_CODE(@CUSTOMERID);
+
+CALL UPDATE_TOTAL_PURCHASE_PRICE(@TRANSACTIONID);
+
+SELECT * FROM CUSTOMER;
+SELECT * FROM TRANSACTIONS;
+SELECT * FROM TRANSACTIONS_ITEM
+
